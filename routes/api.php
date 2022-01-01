@@ -28,7 +28,7 @@ Route::get('sak', function () {
 
 
 Route::get('posts', function () {
-    // $test = Post::all(); 
+    // $test = Post::all();
     // $stuff = [];
     // foreach(Post::all() as $item){
     //     $item['category'] = $item->category;
@@ -36,14 +36,20 @@ Route::get('posts', function () {
     //     // $stuff[] = ['category' => $item->category, 'post' => $item];
     // }
 
-    // return collect($test);    
-    return Post::with('category', 'author')->get();    
+    // return collect($test);
+
+    $posts = Post::with('category', 'author')->get();
+
+    if(request('searchString')){
+        $posts = Post::with('category', 'author')->filter(request('searchString'))->get();
+    }
+    return $posts;
 });
 
 Route::get('users', function () {
-    return User::all();    
+    return User::all();
 });
 
 Route::get('authors/{author:username}', function(User $author){
-    return User::with('posts')->findOrFail($author->id);   
+    return User::with('posts')->findOrFail($author->id);
 });

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +32,31 @@ Route::get('/category/{category:slug}', function (Category $category) {
     ]);
 });
 
-Route::get('/{any?}', function () {
-    return view('welcome');
-});
+// Route::get('/hej', function () {
+//     // dd(request('search'));
+//     @dump("hejsadasjjj");
+//     return view('welcome2');
+// });
+
+Route::get('/{any?}', [PostController::class, 'index']);
+// Route::get('/{any?}', function () {
+//     $posts = Post::all();
+//     if(request('search')){
+//         return view('welcome2', [PostController::class, 'index']);
+//     }
+
+//     return view('welcome', [
+//         'posts' => $posts
+//     ]);
+// });
+
+
+
+// Route::get('user', 'UserController@index')->name('user');
+// Route::get('/{any?}', function () {
+//     // dd(request('search'));
+//     return view('welcome');
+// });
 
 // Route::get('/authors/{any?}', function () {
 //     return view('welcome');

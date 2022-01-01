@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Laraveleskumt</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -23,21 +23,13 @@
 
     </head>
     <body class="antialiased">
-        @dump($posts)
-        <ul>
-            @foreach ($posts as $post)
-                <li>
-                    <h3>{{$post->title}}</h3>
-                    <p>{{$post->excerpt}}</p>
-                    <p>{{$post->created_at}}</p>
-                </li>
-            @endforeach
-        </ul>
+        <h1>Det här är söket {{$query ?? "inget searchobjekt"}}</h1>
         <div id="app">
             <form action="#" method="get">
                 <input type="text" name="search">
                 <input type="Submit" value="Sökaaaa">
             </form>
+            <!-- @dump("hejjjj") -->
             <router-view></router-view>
             <hr>
             <router-link to="/">Home</router-link>
